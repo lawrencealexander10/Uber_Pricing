@@ -13,5 +13,6 @@ class UberCoordinate < ActiveRecord::Base
 				Vehicle.create(uber_coordinate_id: self.id, product: price_estimates[index][:product_id], surge: price_estimates[index][:surge_multiplier], eta: time_estimates[index][:estimate])
 			end
 		UberCoordinate.delay(run_at: 20.seconds.from_now).create(location: self.location, longitude:self.longitude, latitude:self.latitude)
+		# UberCoordinate.find(self.id).delay(run_at: 20.seconds.from_now).query
 	end
 end
